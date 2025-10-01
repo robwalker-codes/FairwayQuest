@@ -17,22 +17,59 @@ Console.WriteLine(options.FastMode
     : "Enjoy a narrated round with full commentary.");
 
 var playerCount = PromptForValue<int>("Enter number of players (1-4): ", InputParsers.TryParsePlayerCount);
-var players = new List<Player>();
+var playerEntries = new List<(string Name, int HandicapIndex18)>();
 for (var i = 0; i < playerCount; i++)
 {
     var name = PromptForNonEmpty($"Player {i + 1} name: ");
     var handicap = PromptForValue<int>($"{name}'s handicap (0-54): ", InputParsers.TryParseHandicap);
-    players.Add(new Player { Name = name, Handicap = handicap });
+    playerEntries.Add((name, handicap));
 }
 
 var holeCount = PromptForValue<int>("Number of holes (9 or 18): ", InputParsers.TryParseHoleCount);
 var gameType = PromptForValue<GameType>("Game type (stroke/stableford): ", InputParsers.TryParseGameType);
 
 var course = DefaultCourseProvider.CreateCourse(holeCount);
-foreach (var player in players)
+var strokeIndexes = course.Select(h => h.StrokeIndex).ToArray();
+var players = new List<Player>();
+var preAllowanceHandicaps = new List<(Player player, int baseHandicap)>();
+
+foreach (var entry in playerEntries)
 {
-    var allocation = HandicapAllocator.Allocate(player.Handicap, course);
-    player.SetAllocatedStrokes(allocation);
+    var playingHandicap = holeCount == 18
+        ? entry.HandicapIndex18
+        : (int)Math.Round(entry.HandicapIndex18 / 2.0, MidpointRounding.ToEven);
+
+    var effective = Handicap.ComputeEffectiveHandicap(
+        entry.HandicapIndex18,
+        holeCount,
+        gameType == GameType.Stableford,
+        options.StablefordAllowancePercent);
+
+    var allocation = Handicap.AllocateStrokesPerHole(effective, strokeIndexes);
+
+    var player = new Player
+    {
+        Name = entry.Name,
+        HandicapIndex18 = entry.HandicapIndex18,
+        EffectiveHandicap = effective,
+        AllocatedStrokesPerHole = allocation
+    };
+
+    players.Add(player);
+
+    preAllowanceHandicaps.Add((player, playingHandicap));
+}
+
+if (gameType == GameType.Stableford)
+{
+    Console.WriteLine();
+    Console.WriteLine("Stableford handicap allocations:");
+    foreach (var (player, baseHandicap) in preAllowanceHandicaps)
+    {
+        var baseLabel = holeCount == 18 ? "18-hole eff" : "9-hole eff";
+        Console.WriteLine($"{player.Name}: HI18={player.HandicapIndex18} → {baseLabel}={baseHandicap} → Stableford {options.StablefordAllowancePercent}% → {player.EffectiveHandicap}");
+        Console.WriteLine($"Per-hole strokes (by hole #): [{string.Join(",", player.AllocatedStrokesPerHole)}]");
+    }
 }
 
 var playerStates = players.Select(player => new PlayerRoundState(player)).ToList();
@@ -197,6 +234,20 @@ static CliOptions ParseOptions(string[] args)
             case "--fast":
                 options.FastMode = true;
                 break;
+            case "--stableford-allowance":
+                if (i + 1 >= args.Length || !int.TryParse(args[i + 1], out var allowance))
+                {
+                    throw new ArgumentException("--stableford-allowance requires an integer value");
+                }
+
+                if (allowance < 0)
+                {
+                    throw new ArgumentException("--stableford-allowance must be non-negative");
+                }
+
+                options.StablefordAllowancePercent = allowance;
+                i++;
+                break;
             default:
                 throw new ArgumentException($"Unknown argument '{arg}'");
         }
@@ -211,6 +262,7 @@ sealed class CliOptions
 {
     public int Seed { get; set; } = 90210;
     public bool FastMode { get; set; }
+    public int StablefordAllowancePercent { get; set; } = 95;
 }
 
 sealed class PlayerRoundState

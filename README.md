@@ -20,6 +20,28 @@ dotnet run --project src/FairwayQuest.Cli -- --seed 123 --fast
 
 * `--seed <int>` – provide a deterministic random seed so the same inputs reproduce the same round (default `90210`).
 * `--fast` – trims some narration while keeping all essential prompts and outcomes.
+* `--stableford-allowance <int>` – override the Stableford allowance percentage (default `95`, set `100` to disable the allowance).
+
+## Rules & Handicaps
+
+*Stroke Index (SI)* ranks hole difficulty. A lower SI means a tougher hole, so handicap strokes are applied to those holes first.
+
+**Playing Handicap**
+
+* 18 holes: use the entered handicap index (HI18) as-is.
+* 9 holes: use half of HI18, rounded to the nearest whole number with .5 rounding away from zero.
+* Stableford rounds apply the allowance percentage (95% by default) to the 9- or 18-hole playing handicap using the same rounding rule. The result is always clamped between 0 and 54.
+
+When you start a Stableford round the CLI prints each player's HI18, the intermediate playing handicap for the chosen hole count, the allowance used, and the resulting effective handicap. It also lists the per-hole stroke allocation in hole order so you can see where shots are received.
+
+**Example (previous regression)**
+
+Player HI18 `22`, 9-hole Stableford with the default 95% allowance:
+
+* HI18 = 22 → 9-hole playing handicap = 11 → Stableford 95% allowance → effective handicap = 10.
+* On the SI-1 par 4, two strokes are allocated. A gross 3 therefore becomes a net 1 (3 − 2, clamped to a minimum of 1) for an albatross worth 5 points—not the 6 that previously appeared.
+
+FairwayQuest intentionally simplifies golf math and physics for a faster-paced experience. Feel free to tweak the course data, allowance percentage, or other parameters to suit your group.
 
 ### Gameplay Flow
 

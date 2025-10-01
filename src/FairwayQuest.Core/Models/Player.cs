@@ -1,16 +1,12 @@
 namespace FairwayQuest.Core.Models;
 
-public class Player
+public sealed class Player
 {
     public required string Name { get; init; }
 
-    public required int Handicap { get; init; }
+    public required int HandicapIndex18 { get; init; }
 
-    public int[] AllocatedStrokesPerHole { get; private set; } = Array.Empty<int>();
+    public required int EffectiveHandicap { get; init; }
 
-    public void SetAllocatedStrokes(int[] strokes)
-    {
-        ArgumentNullException.ThrowIfNull(strokes);
-        AllocatedStrokesPerHole = strokes;
-    }
+    public required int[] AllocatedStrokesPerHole { get; init; }
 }

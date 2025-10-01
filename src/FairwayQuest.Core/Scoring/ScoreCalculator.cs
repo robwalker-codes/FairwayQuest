@@ -2,7 +2,11 @@ namespace FairwayQuest.Core.Scoring;
 
 public static class ScoreCalculator
 {
-    public static int CalculateNetStrokes(int grossStrokes, int strokesReceived) => grossStrokes - strokesReceived;
+    public static int CalculateNetStrokes(int grossStrokes, int strokesReceived)
+    {
+        var net = grossStrokes - strokesReceived;
+        return net < 1 ? 1 : net;
+    }
 
     public static int StablefordPointsFromRelativeScore(int relativeToPar)
     {
