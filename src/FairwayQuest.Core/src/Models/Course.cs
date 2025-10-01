@@ -39,11 +39,11 @@ public sealed class Course
             throw new ArgumentException("Default tee must be present in tee metadata.", nameof(defaultTee));
         }
 
-        Name = name;
-        Location = location;
-        Holes = new ReadOnlyCollection<Hole>(holes.ToList());
-        DefaultTee = defaultTee;
-        TeesMetadata = new ReadOnlyDictionary<string, TeeMetadata>(new Dictionary<string, TeeMetadata>(teeMetadata, StringComparer.OrdinalIgnoreCase));
+        this.Name = name;
+        this.Location = location;
+        this.Holes = new ReadOnlyCollection<Hole>(holes.ToList());
+        this.DefaultTee = defaultTee;
+        this.TeesMetadata = new ReadOnlyDictionary<string, TeeMetadata>(new Dictionary<string, TeeMetadata>(teeMetadata, StringComparer.OrdinalIgnoreCase));
     }
 
     /// <summary>
@@ -80,9 +80,9 @@ public sealed class Course
     {
         return selection switch
         {
-            HoleSelection.All18 => Holes,
-            HoleSelection.Front9 => Holes.Take(9).ToList(),
-            HoleSelection.Back9 => Holes.Skip(Math.Max(0, Holes.Count - 9)).ToList(),
+            HoleSelection.All18 => this.Holes,
+            HoleSelection.Front9 => this.Holes.Take(9).ToList(),
+            HoleSelection.Back9 => this.Holes.Skip(Math.Max(0, this.Holes.Count - 9)).ToList(),
             _ => throw new ArgumentOutOfRangeException(nameof(selection), selection, "Unsupported selection."),
         };
     }

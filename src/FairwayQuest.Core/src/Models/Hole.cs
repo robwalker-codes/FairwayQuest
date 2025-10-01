@@ -29,10 +29,10 @@ public sealed class Hole
         ArgumentNullException.ThrowIfNull(strokeIndex);
         ArgumentNullException.ThrowIfNull(yards);
 
-        Number = number;
-        Par = par;
-        StrokeIndex = strokeIndex;
-        Yards = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(yards, StringComparer.OrdinalIgnoreCase));
+        this.Number = number;
+        this.Par = par;
+        this.StrokeIndex = strokeIndex;
+        this.Yards = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(yards, StringComparer.OrdinalIgnoreCase));
     }
 
     /// <summary>

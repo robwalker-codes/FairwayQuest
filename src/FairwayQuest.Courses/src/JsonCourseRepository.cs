@@ -26,7 +26,7 @@ public sealed class JsonCourseRepository : ICourseRepository
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(coursesDirectory);
         this.coursesDirectory = coursesDirectory;
-        serializerOptions = new JsonSerializerOptions
+        this.serializerOptions = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
@@ -37,12 +37,12 @@ public sealed class JsonCourseRepository : ICourseRepository
     /// <inheritdoc />
     public async Task<IReadOnlyList<Course>> GetCoursesAsync(CancellationToken cancellationToken = default)
     {
-        if (!Directory.Exists(coursesDirectory))
+        if (!Directory.Exists(this.coursesDirectory))
         {
-            throw new DirectoryNotFoundException($"Course directory '{coursesDirectory}' was not found.");
+            throw new DirectoryNotFoundException($"Course directory '{this.coursesDirectory}' was not found.");
         }
 
-        var files = Directory.EnumerateFiles(coursesDirectory, "*.course.json", SearchOption.TopDirectoryOnly)
+        var files = Directory.EnumerateFiles(this.coursesDirectory, "*.course.json", SearchOption.TopDirectoryOnly)
             .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
@@ -51,7 +51,7 @@ public sealed class JsonCourseRepository : ICourseRepository
         {
             cancellationToken.ThrowIfCancellationRequested();
             var json = await File.ReadAllTextAsync(file, cancellationToken).ConfigureAwait(false);
-            var document = JsonSerializer.Deserialize<CourseDocument>(json, serializerOptions)
+            var document = JsonSerializer.Deserialize<CourseDocument>(json, this.serializerOptions)
                 ?? throw new InvalidDataException($"File '{file}' does not contain a valid course definition.");
 
             courses.Add(ToCourse(document, file));

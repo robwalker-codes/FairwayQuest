@@ -22,8 +22,8 @@ public sealed class StrokeIndexSet
             throw new ArgumentOutOfRangeException(nameof(women), women, "Stroke index must be at least 1 when provided.");
         }
 
-        Men = men;
-        Women = women;
+        this.Men = men;
+        this.Women = women;
     }
 
     /// <summary>

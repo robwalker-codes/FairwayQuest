@@ -203,14 +203,15 @@ internal static class Program
 
         private static Course PromptForCourse(IReadOnlyList<Course> courses)
         {
-            for (var i = 0; i < courses.Count; i++)
-            {
-                Console.WriteLine($"[{i + 1}] {courses[i].Name} ({courses[i].Location})");
-            }
+            if (courses is null || courses.Count == 0)
+                throw new ArgumentException("No courses available.", nameof(courses));
 
-            Console.Write("Select course: ");
-            var index = PromptForInt(value => value is >= 1 and <= courses.Count) - 1;
-            return courses[index];
+            for (var i = 0; i < courses.Count; i++)
+                Console.WriteLine($"[{i + 1}] {courses[i].Name} ({courses[i].Location})");
+
+            Console.Write($"Select course (1–{courses.Count}): ");
+            var idx1Based = PromptForInt(v => v >= 1 && v <= courses.Count);
+            return courses[idx1Based - 1];
         }
 
         private static string PromptForTee(Course course)

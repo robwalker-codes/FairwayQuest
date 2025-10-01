@@ -13,9 +13,9 @@ public sealed class HoleScore
     /// <param name="stablefordPoints">Stableford points earned on the hole.</param>
     public HoleScore(int grossStrokes, int netStrokes, int stablefordPoints)
     {
-        GrossStrokes = grossStrokes;
-        NetStrokes = netStrokes;
-        StablefordPoints = stablefordPoints;
+        this.GrossStrokes = grossStrokes;
+        this.NetStrokes = netStrokes;
+        this.StablefordPoints = stablefordPoints;
     }
 
     /// <summary>

@@ -12,8 +12,8 @@ public sealed class TeeMetadata
     /// <param name="slopeMen">The slope rating for men.</param>
     public TeeMetadata(double? ratingMen, int? slopeMen)
     {
-        RatingMen = ratingMen;
-        SlopeMen = slopeMen;
+        this.RatingMen = ratingMen;
+        this.SlopeMen = slopeMen;
     }
 
     /// <summary>
