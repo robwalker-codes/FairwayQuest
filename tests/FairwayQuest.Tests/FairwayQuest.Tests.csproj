@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\FairwayQuest.Core\FairwayQuest.Core.csproj" />
     <ProjectReference Include="..\..\src\FairwayQuest.Courses\FairwayQuest.Courses.csproj" />
+    <ProjectReference Include="..\..\src\FairwayQuest.Cli\FairwayQuest.Cli.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
