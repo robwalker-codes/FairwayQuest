@@ -1,0 +1,30 @@
+{
+  "name": "St Andrews - Old Course",
+  "location": "St Andrews, Scotland",
+  "defaultTee": "blue",
+  "teesMeta": {
+    "black": {"ratingMen": 73.1, "slopeMen": 132},
+    "blue":  {"ratingMen": 71.4, "slopeMen": 129},
+    "green": {"ratingMen": 69.9, "slopeMen": 125}
+  },
+  "holes": [
+    {"number":1,"par":4,"strokeIndexMen":10,"strokeIndexWomen":12,"yards":{"black":376,"blue":355,"green":339}},
+    {"number":2,"par":4,"strokeIndexMen":6,"strokeIndexWomen":14,"yards":{"black":411,"blue":395,"green":375}},
+    {"number":3,"par":4,"strokeIndexMen":16,"strokeIndexWomen":8,"yards":{"black":370,"blue":337,"green":321}},
+    {"number":4,"par":4,"strokeIndexMen":8,"strokeIndexWomen":6,"yards":{"black":419,"blue":411,"green":401}},
+    {"number":5,"par":5,"strokeIndexMen":2,"strokeIndexWomen":2,"yards":{"black":514,"blue":514,"green":454}},
+    {"number":6,"par":4,"strokeIndexMen":12,"strokeIndexWomen":10,"yards":{"black":374,"blue":360,"green":325}},
+    {"number":7,"par":4,"strokeIndexMen":4,"strokeIndexWomen":4,"yards":{"black":359,"blue":349,"green":335}},
+    {"number":8,"par":3,"strokeIndexMen":14,"strokeIndexWomen":18,"yards":{"black":166,"blue":154,"green":145}},
+    {"number":9,"par":4,"strokeIndexMen":18,"strokeIndexWomen":16,"yards":{"black":347,"blue":289,"green":261}},
+    {"number":10,"par":4,"strokeIndexMen":15,"strokeIndexWomen":13,"yards":{"black":340,"blue":311,"green":296}},
+    {"number":11,"par":3,"strokeIndexMen":7,"strokeIndexWomen":17,"yards":{"black":174,"blue":164,"green":150}},
+    {"number":12,"par":4,"strokeIndexMen":3,"strokeIndexWomen":3,"yards":{"black":316,"blue":304,"green":304}},
+    {"number":13,"par":4,"strokeIndexMen":11,"strokeIndexWomen":11,"yards":{"black":418,"blue":388,"green":377}},
+    {"number":14,"par":5,"strokeIndexMen":1,"strokeIndexWomen":1,"yards":{"black":530,"blue":523,"green":487}},
+    {"number":15,"par":4,"strokeIndexMen":9,"strokeIndexWomen":5,"yards":{"black":414,"blue":391,"green":369}},
+    {"number":16,"par":4,"strokeIndexMen":13,"strokeIndexWomen":9,"yards":{"black":381,"blue":345,"green":325}},
+    {"number":17,"par":4,"strokeIndexMen":5,"strokeIndexWomen":7,"yards":{"black":455,"blue":436,"green":426}},
+    {"number":18,"par":4,"strokeIndexMen":17,"strokeIndexWomen":15,"yards":{"black":357,"blue":361,"green":342}}
+  ]
+}
