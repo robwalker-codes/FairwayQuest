@@ -1,0 +1,28 @@
+{
+  "name": "Pebble Beach Golf Links",
+  "location": "Pebble Beach, California, USA",
+  "defaultTee": "championship",
+  "teesMeta": {
+    "championship": {"ratingMen": null, "slopeMen": null}
+  },
+  "holes": [
+    {"number":1,"par":4,"strokeIndexMen":8,"strokeIndexWomen":10,"yards":{"championship":381}},
+    {"number":2,"par":5,"strokeIndexMen":10,"strokeIndexWomen":6,"yards":{"championship":516}},
+    {"number":3,"par":4,"strokeIndexMen":12,"strokeIndexWomen":12,"yards":{"championship":404}},
+    {"number":4,"par":4,"strokeIndexMen":16,"strokeIndexWomen":14,"yards":{"championship":331}},
+    {"number":5,"par":3,"strokeIndexMen":14,"strokeIndexWomen":16,"yards":{"championship":195}},
+    {"number":6,"par":5,"strokeIndexMen":2,"strokeIndexWomen":2,"yards":{"championship":523}},
+    {"number":7,"par":3,"strokeIndexMen":18,"strokeIndexWomen":18,"yards":{"championship":106}},
+    {"number":8,"par":4,"strokeIndexMen":6,"strokeIndexWomen":4,"yards":{"championship":428}},
+    {"number":9,"par":4,"strokeIndexMen":4,"strokeIndexWomen":8,"yards":{"championship":504}},
+    {"number":10,"par":4,"strokeIndexMen":7,"strokeIndexWomen":5,"yards":{"championship":446}},
+    {"number":11,"par":4,"strokeIndexMen":5,"strokeIndexWomen":9,"yards":{"championship":390}},
+    {"number":12,"par":3,"strokeIndexMen":17,"strokeIndexWomen":13,"yards":{"championship":202}},
+    {"number":13,"par":4,"strokeIndexMen":9,"strokeIndexWomen":11,"yards":{"championship":445}},
+    {"number":14,"par":5,"strokeIndexMen":1,"strokeIndexWomen":1,"yards":{"championship":580}},
+    {"number":15,"par":4,"strokeIndexMen":13,"strokeIndexWomen":15,"yards":{"championship":397}},
+    {"number":16,"par":4,"strokeIndexMen":11,"strokeIndexWomen":7,"yards":{"championship":403}},
+    {"number":17,"par":3,"strokeIndexMen":15,"strokeIndexWomen":17,"yards":{"championship":178}},
+    {"number":18,"par":5,"strokeIndexMen":3,"strokeIndexWomen":3,"yards":{"championship":543}}
+  ]
+}
