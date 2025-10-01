@@ -189,7 +189,6 @@ internal sealed class RoundRunner
         trackers[playerIndex].RecordStrokePlay(gross, net);
         Console.WriteLine($" {player.Name}: Gross {gross}, Net {net} ({this.DescribeRelative(net - par)})");
     }
-    }
 
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Instance method keeps symmetry with other helpers.")]
     private string DescribeRelative(int relative)
