@@ -174,7 +174,7 @@ internal sealed class RoundRunner
         var score = ScoreCalculator.CalculateStableford(holeState.Hole.Par, gross, strokesReceived);
         trackers[playerIndex].RecordStableford(score.GrossStrokes, score.NetStrokes, score.StablefordPoints);
         Console.WriteLine(
-            $" {player.Name}: Gross {gross}, Net {score.NetStrokes} ({this.DescribeRelative(score.NetStrokes - holeState.Hole.Par)}) → {score.StablefordPoints} pts");
+            $" {player.Name}: Gross {gross}, Net {score.NetStrokes} ({this.DescribeRelative(score.NetStrokes - holeState.Hole.Par)}) | {score.StablefordPoints} pts");
     }
 
     private void SummarizeStrokePlay(

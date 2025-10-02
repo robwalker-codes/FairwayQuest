@@ -86,7 +86,7 @@ public sealed class ShotEngine
 
     private static ShotResult CreatePenaltyResult(ShotRequest request, ClubDefinition club)
     {
-        var commentary = $"{club.Label} → OB (penalty +1); {request.RemainingYards:0}y remaining";
+        var commentary = $"{club.Label} | OB (penalty +1); {request.RemainingYards:0}y remaining";
         return new ShotResult(1, 1, 0, "penalty", Lie.Rough, request.RemainingYards, false, commentary);
     }
 
@@ -95,8 +95,8 @@ public sealed class ShotEngine
         var putts = ResolvePuttCount(request.RemainingYards, random);
         var commentary = putts switch
         {
-            1 => "p → holed",  // short, direct message
-            _ => $"p → holed ({putts} putts)",
+            1 => "p - holed",  // short, direct message
+            _ => $"p - holed ({putts} putts)",
         };
 
         return new ShotResult(putts, 0, request.RemainingYards, "straight", Lie.Green, 0, true, commentary);
@@ -304,18 +304,18 @@ public sealed class ShotEngine
 
     private static string BuildPenaltyCommentary(ClubDefinition club, double remaining)
     {
-        return $"{club.Label} → penalty; {remaining:0}y remaining";
+        return $"{club.Label} - penalty; {remaining:0}y remaining";
     }
 
     private static string BuildHoledCommentary(ClubDefinition club)
     {
-        return club.IsPutter ? "p → holed" : $"{club.Label} → holed!";
+        return club.IsPutter ? "p - holed" : $"{club.Label} - holed!";
     }
 
     private static string BuildStandardCommentary(ClubDefinition club, double distance, string lateral, Lie newLie, double remaining, string contact)
     {
         var contactText = contact == "pure" ? string.Empty : $"{contact} ";
-        var message = $"{club.Label} → {contactText}{distance:0}y, {lateral}, {newLie}, {remaining:0}y to pin";
+        var message = $"{club.Label} - {contactText}{distance:0}y, {lateral}, {newLie}, {remaining:0}y to pin";
         return message.Replace("  ", " ", StringComparison.Ordinal);
     }
 

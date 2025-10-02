@@ -166,7 +166,7 @@ internal sealed class Application
 
         foreach (var player in players)
         {
-            Console.WriteLine($"{player.Name} — Tee {player.Tee} | HI {player.HandicapIndex18} → EPH {player.EffectivePlayingHandicap}");
+            Console.WriteLine($"{player.Name} — Tee {player.Tee} | HI (handicap index) {player.HandicapIndex18} : EPH (effective playing handicap) {player.EffectivePlayingHandicap}");
             Console.WriteLine($"Strokes: {string.Join(", ", player.AllocatedStrokesPerHole)}");
             Console.WriteLine();
         }
